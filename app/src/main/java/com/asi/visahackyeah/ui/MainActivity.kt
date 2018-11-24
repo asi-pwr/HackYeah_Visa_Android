@@ -1,7 +1,8 @@
-package com.asi.visahackyeah
+package com.asi.visahackyeah.ui
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.asi.visahackyeah.R
 
 class MainActivity : AppCompatActivity() {
 
