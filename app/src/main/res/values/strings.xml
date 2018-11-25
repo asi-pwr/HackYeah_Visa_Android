@@ -6,4 +6,6 @@
 	<string name="payment_value_str">Kwota płatności:</string>
 	<string name="payment_date_str">Data:</string>
 	<string name="payment_accept">Potwierdź</string>
+	<string name="chanel_name">VisaHackYeah</string>
+	<string name="channel_description">VisaHackYeah</string>
 </resources>

@@ -14,6 +14,7 @@ project.ext {
     timberVersion = "4.7.0"
     retrofitVersion = "2.3.0"
     okHttpVersion = "3.9.1"
+    pusher = "1.5.0"
     leakCanaryVersion = "1.6.1"
 }
 
@@ -83,6 +84,9 @@ dependencies {
     //okHttp
     implementation "com.squareup.okhttp3:okhttp:$project.okHttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$project.okHttpVersion"
+
+    //Pusher
+    implementation "com.pusher:pusher-java-client:$project.pusher"
 
     //LeakCanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$project.leakCanaryVersion"
