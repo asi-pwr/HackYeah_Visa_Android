@@ -1,5 +1,6 @@
 package com.asi.visahackyeah.di
 
+import com.asi.visahackyeah.ui.payment.PaymentViewModel
 import dagger.Subcomponent
 
 /**
@@ -13,5 +14,5 @@ interface ViewModelSubComponent {
         fun build(): ViewModelSubComponent
     }
 
-    //fun gpsInfoViewModel(): GpsInfoViewModel
+    fun paymentViewModel(): PaymentViewModel
 }

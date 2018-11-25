@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import android.util.ArrayMap
 import com.asi.visahackyeah.di.ViewModelSubComponent
+import com.asi.visahackyeah.ui.payment.PaymentViewModel
 
 import java.util.concurrent.Callable
 
@@ -26,7 +27,7 @@ constructor(viewModelSubComponent: ViewModelSubComponent) : ViewModelProvider.Fa
     private val creators: ArrayMap<Class<*>, Callable<out ViewModel>> = ArrayMap()
 
     init {
-        //creators[GpsInfoViewModel::class.java] = Callable { viewModelSubComponent.gpsInfoViewModel() }
+        creators[PaymentViewModel::class.java] = Callable { viewModelSubComponent.paymentViewModel() }
     }
 
     /**
