@@ -8,4 +8,5 @@
 	<string name="payment_accept">Potwierdź</string>
 	<string name="chanel_name">VisaHackYeah</string>
 	<string name="channel_description">VisaHackYeah</string>
+	<string name="pref_client_id">client_id</string>
 </resources>

@@ -32,7 +32,7 @@ class App : Application(), HasActivityInjector {
 
         createNotificationChannel()
 
-        LeakCanary.install(this)
+        //LeakCanary.install(this)
         AppInjector.init(this)
         AppLogger.init(this)
     }
