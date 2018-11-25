@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import com.asi.visahackyeah.R
 import com.asi.visahackyeah.ui.payment.PaymentFragment
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.DaggerAppCompatActivity
 import dagger.android.support.HasSupportFragmentInjector
 import timber.log.Timber
 import javax.inject.Inject

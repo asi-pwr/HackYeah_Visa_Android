@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">visahackyeah</string>
+    <string name="payment_header_str">Potwierdź transakcję</string>
+	<string name="payment_contractor_str">Odbiorca płatności</string>
+	<string name="payment_title_str">Tytuł:</string>
+	<string name="payment_value_str">Kwota płatności:</string>
+	<string name="payment_date_str">Data:</string>
+	<string name="payment_accept">Potwierdź</string>
 </resources>
