@@ -38,13 +38,19 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         setContentView(R.layout.activity_main)
         subscribe()
 
-        if(intent.extras != null && intent.extras["notifDisp"] == 1) lunchPaymentFragment()
+        val prefs = getSharedPreferences(
+            this.packageName + "_preferences", Activity.MODE_PRIVATE)
+
+        val id = prefs.getString("id", "-1")
+        prefs.edit().putString("id","-1").apply()
+
+        if(id != "-1") lunchPaymentFragment(id)
         else lunchPreferencesFragment()
     }
 
-    fun lunchPaymentFragment() {
+    fun lunchPaymentFragment(id: String) {
         supportFragmentManager.beginTransaction()
-            .add(R.id.mainFragmentLayout, PaymentFragment.getInstance(), PaymentFragment.CLASS_TAG)
+            .add(R.id.mainFragmentLayout, PaymentFragment.getInstance(id), PaymentFragment.CLASS_TAG)
             .commit()
         Timber.i("Lunched PaymentFragment")
     }
@@ -65,11 +71,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
         channel.bind("my-event") { _, _, data ->
 
-            val contentIntent: PendingIntent
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("notifDisp", 1)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            contentIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
 
             val prefs = getSharedPreferences(
                 this.packageName + "_preferences", Activity.MODE_PRIVATE)
@@ -77,7 +79,19 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
             val apiUserIdStr = (data.subSequence(10, data.indexOf(',', 10, true)))
             val apiUserId = apiUserIdStr.toString().trim(' ')
+
             if(userId == apiUserId) {
+                val ipStartIndex = data.indexOf("\"paymentId\":", 10) + 13
+                val paymentId = data.subSequence(ipStartIndex, data.indexOf('}', ipStartIndex)).toString()
+
+                val contentIntent: PendingIntent
+                val intent = Intent(this, MainActivity::class.java)
+
+                prefs.edit().putString("id", paymentId).commit()
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                contentIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
                 val builder = NotificationCompat.Builder(this, "default")
                     .setDefaults(DEFAULT_VIBRATE or DEFAULT_LIGHTS)
                     .setSmallIcon(R.drawable.menu_about)
@@ -88,7 +102,6 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
                 val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-                notificationId++
                 notificationManager.notify(notificationId, builder.build())
             }
 

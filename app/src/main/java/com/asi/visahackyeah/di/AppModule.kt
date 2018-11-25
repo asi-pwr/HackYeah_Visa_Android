@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.asi.visahackyeah.App
 import com.asi.visahackyeah.arch.ViewModelFactory
+import com.asi.visahackyeah.common.repository.VisaRepository
+import com.asi.visahackyeah.network.RetrofitFactory
 import com.asi.visahackyeah.utils.RxSchedulersFacade
 import dagger.Module
 import dagger.Provides
@@ -30,5 +32,10 @@ class AppModule {
     @Provides
     fun provideRxSchedulersFacade(): RxSchedulersFacade {
         return RxSchedulersFacade()
+    }
+
+    @Provides
+    fun provideVisaRepository(): VisaRepository{
+        return VisaRepository(RetrofitFactory())
     }
 }
